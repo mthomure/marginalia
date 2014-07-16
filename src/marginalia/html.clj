@@ -2,7 +2,7 @@
   "Utilities for converting parse results into html."
   (:use [marginalia.hiccup :only (html escape-html)])
   (:require [clojure.string :as str])
-  (:import [com.petebevin.markdown MarkdownProcessor]))
+  (:import [com.github.rjeschke.txtmark Configuration Processor]))
 
 (def ^{:dynamic true} *resources* "./vendor/")
 
@@ -57,10 +57,10 @@
 
 ;; The following functions handle preparation of doc text (both comment and docstring
 ;; based) for display through html & css.
+(def md-config (.build (.forceExtentedProfile
+    (com.github.rjeschke.txtmark.Configuration/builder))))
 
 ;; Markdown processor.
-(def mdp (com.petebevin.markdown.MarkdownProcessor.))
-
 (defn md
   "Markdown string to html converter. Translates strings like:
 
@@ -70,7 +70,7 @@
 
    ..."
   [s]
-  (.markdown mdp s))
+  (com.github.rjeschke.txtmark.Processor/process s md-config))
 
 ;; As a result of docifying then grouping, you'll end up with a seq like this one:
 ;; <pre><code>[...
