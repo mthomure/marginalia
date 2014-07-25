@@ -1,4 +1,4 @@
-(defproject marginalia "0.8.0-SNAPSHOT-yieldbot"
+(defproject org.clojars.mthomure/marginalia "0.8.0-SNAPSHOT-yieldbot"
   :description "lightweight literate programming for clojure -- inspired by [docco](http://jashkenas.github.com/docco/)"
 ;;  :main marginalia.main
   :dependencies
